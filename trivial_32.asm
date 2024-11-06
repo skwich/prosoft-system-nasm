@@ -3,8 +3,8 @@ global _start
 
 section .text
 _start:
-    mov eax, 1
-    mov ebx, 0
-    int 0x80  ; int-вызов прерываний,  linux-> exit()
+    mov eax, 1      ; номер системного вызова exit()
+    xor ebx, ebx    ; код состояния(0 - корректное завершение)
+    int 0x80        ; вызов системного вызова
 ;nasm -f elf trivial_32.asm
-;ld trivial.o -o trivial_32
+;ld -m elf_i386 trivial_32.o -o trivial_32
